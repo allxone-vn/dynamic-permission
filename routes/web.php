@@ -6,13 +6,14 @@ use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\RegisterController;
 
 // Route::get('/', function () {
 //     return view('login');
 // });
 
 Route::get('/', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index']);
 
 // Route::group(['middleware' => ['auth', 'checkPermissions:full_name,read']], function () {
 //     Route::get('/home', [HomeController::class, 'index']);
@@ -20,6 +21,10 @@ Route::get('/', [LoginController::class, 'index']);
 
 
 Route::post('/login', [LoginController::class, 'postLogin'])->name('login');
+
+Route::get('/register', [RegisterController::class, 'index'])->name('register_form');
+
+Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 
