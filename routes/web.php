@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserController;
 
 // Route::get('/', function () {
 //     return view('login');
@@ -14,6 +15,10 @@ use App\Http\Controllers\RegisterController;
 
 Route::get('/', [LoginController::class, 'index']);
 Route::get('/login', [LoginController::class, 'index']);
+Route::get('/change-password', [UserController::class, 'index'])->name('changePassword_form');
+
+Route::post('/change-password', [UserController::class, 'changePassword'])->name('change.password');
+
 
 // Route::group(['middleware' => ['auth', 'checkPermissions:full_name,read']], function () {
 //     Route::get('/home', [HomeController::class, 'index']);

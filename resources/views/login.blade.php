@@ -23,11 +23,13 @@
                 <span>or use your account</span>
                 <input type="email" placeholder="Email" name="email" />
                 <input class="mt-1" type="password" placeholder="Password" name="password" />
+                <a href="#">Forgot your password?</a>
+                <button>Sign In</button>
 
-				@if ($errors->any())
+                @if ($errors->any())
 				<div class="alert alert-danger mt-2">
 					@foreach ($errors->all() as $error)
-						<p>{{ $error }}</p>
+						<p class="mb-0 mt-0">{{ $error }}</p>
 					@endforeach
 				</div>
 				@endif
@@ -37,9 +39,6 @@
                     {{ session('success') }}
                 </div>
                 @endif
-
-                <a href="#">Forgot your password?</a>
-                <button>Sign In</button>
             </form>
         </div>
         <div class="overlay-container">

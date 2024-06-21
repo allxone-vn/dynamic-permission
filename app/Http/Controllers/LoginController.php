@@ -30,7 +30,7 @@ class LoginController extends Controller
         }
         else{
             //dd('Login fail');
-            return redirect()->back()->withErrors(['fail' => 'Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin đăng nhập.'])->withInput($request->only('email'));
+            return redirect()->back()->withErrors(['fail' => 'Login failed. Please check your login information again'])->withInput($request->only('email'));
         }
     }
 

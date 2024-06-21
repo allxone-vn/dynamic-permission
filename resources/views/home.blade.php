@@ -47,5 +47,11 @@
             <a href="{{ route('employee.list') }}">View Employee List</a>
         </div>
     @endif --}}
+
+    <form action="{{ route('changePassword_form') }}" method="get">
+        @csrf
+        <button type="submit">Change Password</button>
+    </form>
+
 </body>
 </html>
