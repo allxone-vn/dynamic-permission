@@ -16,15 +16,10 @@
 			@csrf
             <form action="{{ Route('login') }}" method="POST">
                 <h1>Create Account</h1>
-                <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                </div>
-                <span>or use your email for registration</span>
-                <input type="text" placeholder="Name" name="name"/>
+                <input type="text" placeholder="UserName" name="username"/>
                 <input class="mt-1" type="email" placeholder="Email" name="email" />
                 <input class="mt-1" type="password" placeholder="Password" name="password" />
-				<input class="mt-1" type="password" placeholder="Retype Password" name="re_pass" />
+				<input class="mt-1" type="password" placeholder="Confirm Password" name="confirmpass" />
                 <button class="mt-2">Sign Up</button>
             </form>
         </div>
