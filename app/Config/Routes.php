@@ -14,3 +14,5 @@ $routes->get('auth/google', 'Auth::googleLogin');
 $routes->get('auth/google/googleCallback', 'Auth::googleCallback');
 $routes->post('/RegisterAccount','RegisterAccount::register');
 $routes->get('/forgotpassword','Forgotpassword');
+$routes->get('ChangePassword', 'ChangePassword');
+$routes->post('change-password', 'ChangePassword::changePassword');
