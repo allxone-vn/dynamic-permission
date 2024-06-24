@@ -47,4 +47,35 @@ class SocialAuthController extends Controller
             dd($e->getMessage());
         }
     }
+
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function handleGoogleCallback()
+    {
+        try {
+            $googleUser = Socialite::driver('google')->stateless()->user();
+            $user = User::where('email', $googleUser->email)->first();
+
+            if ($user) {
+                Auth::login($user);
+                return redirect()->route('home');
+            } else {
+                $user = User::create([
+                    'username' => $user->name,
+                        'facebook_id'=> $user->id,
+                        'password' => Hash::make('123'),
+                        'role_id' => 4 // or you can leave this blank
+                ]);
+
+                Auth::login($user);
+                return redirect()->route('home');
+            }
+
+        } catch (\Exception $e) {
+            return redirect()->route('login')->withErrors(['error' => 'Failed to login with Google.']);
+        }
+    }
 }

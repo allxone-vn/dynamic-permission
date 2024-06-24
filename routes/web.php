@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ResetPasswordController;
+
 
 // Route::get('/', function () {
 //     return view('login');
@@ -60,3 +62,10 @@ Route::middleware([
 Route::get('auth/facebook', [SocialAuthController::class, 'redirectToFacebook'])->name('auth.facebook');
 
 Route::get('auth/facebook/callback', [SocialAuthController::class, 'handleFacebookCallback']);
+
+Route::get('auth/google', [SocialAuthController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('auth/google/callback', [SocialAuthController::class, 'handleGoogleCallback']);
+
+
+Route::get('forgot-password', [ResetPasswordController::class, 'index'])->name('forgot');
+Route::post('password/email', [ResetPasswordController::class, 'sendMail'])->name('password.email');
