@@ -98,12 +98,20 @@
             }
 
             <?php if (session()->getFlashdata('error')): ?>
-                // Hiển thị thông báo lỗi bằng SweetAlert nếu có lỗi trong session
-                Swal.fire({
-                    icon: 'error',
-                    text: '<?= session()->getFlashdata('error') ?>'
-                });
-            <?php endif; ?>
+            // Hiển thị thông báo lỗi bằng SweetAlert nếu có lỗi trong session
+            Swal.fire({
+                icon: 'error',
+                text: '<?= session()->getFlashdata('error') ?>'
+            });
+        <?php endif; ?>
+
+        <?php if (session()->getFlashdata('success')): ?>
+            // Hiển thị thông báo thành công bằng SweetAlert nếu có thành công trong session
+            Swal.fire({
+                icon: 'success',
+                text: '<?= session()->getFlashdata('success') ?>'
+            });
+        <?php endif; ?>
 
         </script>
 

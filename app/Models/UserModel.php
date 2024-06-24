@@ -53,4 +53,14 @@ class UserModel extends Model
     {
         return $this->where('Username', $username)->first();
     }
+    public function updatePasswordByEmail($email, $password)
+    {
+        $this->where('Username', $email)->set(['Pass' => $password])->update();
+    }
+
+    // Function to find user by email
+    public function findByEmail($email)
+    {
+        return $this->where('Username', $email)->first();
+    }
 }
