@@ -12,3 +12,5 @@ $routes->get('/home', 'Home::index');
 $routes->get('logout', 'home::logout');
 $routes->get('auth/google', 'Auth::googleLogin');
 $routes->get('auth/google/googleCallback', 'Auth::googleCallback');
+$routes->post('/RegisterAccount','RegisterAccount::register');
+$routes->get('/forgotpassword','Forgotpassword');
