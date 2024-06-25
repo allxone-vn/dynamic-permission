@@ -3,7 +3,8 @@
 <link rel="stylesheet" href="{{ asset('css/emp_list.css') }}">
 
 @section('content')
-    <h2>Employee List</h2>
+    <h2>EMPLOYEE LIST</h2>
+    <a href="{{ route('admin.addEmployeeForm') }}" class="button-link">Add employee</a>
     <table border="1" cellpadding="10">
         <thead>
             <tr>
@@ -12,6 +13,7 @@
                 <th>Date of Birth</th>
                 <th>Gender</th>
                 <th>Address</th>
+                <th>Email</th>
                 <th>Phone Number</th>              
                 <th>Marital Status</th>
                 <th>Salary</th>
@@ -27,6 +29,7 @@
                     <td>{{ $employees->date_of_birth }}</td>
                     <td>{{ $employees->gender }}</td>
                     <td>{{ $employees->address }}</td>
+                    <td>{{ $employees->email }}</td>
                     <td>{{ $employees->phone_number }}</td>                  
                     <td>{{ $employees->marital_status }}</td>
                     <td>{{ $employees->salary }}</td>

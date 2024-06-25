@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Auth;
 use DB;
+use Illuminate\Support\Carbon;
 
 class AdminController extends Controller
 {
@@ -40,89 +41,54 @@ class AdminController extends Controller
         return view('employee_list', compact('employee'));
     }
 
-    // public function showAddEmployeeForm()
-    // {
-    //     $departments = Department::all();
-    //     return view('add-employee', compact('departments'));
-    // }
+    public function showAddEmployeeForm()
+    {
+        $roles = Role::all();
+        return view('add-employee', compact('roles'));
+    }
 
+    // Hàm xử lý việc thêm nhân viên mới
     public function storeEmployee(Request $request)
     {
-        // Xác thực dữ liệu đầu vào
-        // $request->validate([
-        //     'name' => 'required|string|max:255|unique:users,name',
-        //     'email' => 'required|string|email|max:255|unique:users,email',
-        //     'password' => 'required|string|min:8|confirmed',
-        //     'full_name' => 'required|string|max:255',
-        //     'address' => 'required|string|max:255',
-        //     'phone_number' => 'required|string|max:15',
-        //     'date_of_birth' => 'required|date',
-        //     'marital_status' => 'required|string',
-        //     'salary' => 'required|numeric',
-        //     'department_id' => 'required|exists:departments,id',
-        // ]);
-
-        // try {
-        //     // Tạo người dùng mới
-        //     $user = User::create([
-        //         'name' => $request->name,
-        //         'email' => $request->email,
-        //         'password' => Hash::make($request->password),
-        //     ]);
-
-        //     // Tạo hồ sơ người dùng
-        //     UserProfile::create([
-        //         'user_id' => $user->id,
-        //         'department_id' => $request->department_id,
-        //         'full_name' => $request->full_name,
-        //         'address' => $request->address,
-        //         'phone_number' => $request->phone_number,
-        //         'date_of_birth' => $request->date_of_birth,
-        //         'marital_status' => $request->marital_status,
-        //         'salary' => $request->salary,
-        //     ]);
-
-        //     return redirect()->route('admin.dashboard')->with('success', 'Employee added successfully.');
-        // } catch (\Exception $e) {
-        //     return redirect()->back()->withErrors(['error' => 'Failed to add employee.'])->withInput();
-        // }
-
-
-        $username = $request->input('name');
-        $email = $request->input('email');
-        $password = $request->input('password');
-        $full_name = $request->input('full_name');
-        $address = $request->input('address');
-        $phone_number = $request->input('phone_number');
-        $date_of_birth = $request->input('date_of_birth');
-        $marital_status = $request->input('marital_status');
-        $salary = $request->input('salary');
-        $department_id = $request->input('department_id');
+        // Kiểm tra tính hợp lệ của dữ liệu
+        $request->validate([
+            'username' => 'required|string|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users',
+            'full_name' => 'required|string|max:255',
+            'gender' => 'required|string|max:10',
+            'date_of_birth' => [
+                'required',
+                'date',
+                'before_or_equal:' . Carbon::now()->subYears(18)->format('Y-m-d')
+            ],
+            'address' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:15',
+            'marital_status' => 'required|string|max:10',
+            'salary' => 'required|numeric',
+            'role_name' => 'required|numeric|exists:roles,id',
+        ]);
 
         // Tạo người dùng mới
         $user = User::create([
-            'name' => $username,
-            'email' => $email,
-            'password' => Hash::make($password),
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make('123'),
+            'role_id' => $request->role_name,
         ]);
 
-        // Tạo hồ sơ người dùng
+        // Tạo hồ sơ người dùng mới
         UserProfile::create([
             'user_id' => $user->id,
-            'department_id' => $department_id,
-            'full_name' => $full_name,
-            'address' => $address,
-            'phone_number' => $phone_number,
-            'date_of_birth' => $date_of_birth,
-            'marital_status' => $marital_status,
-            'salary' => $salary,
+            'full_name' => $request->full_name,
+            'gender' => $request->gender,
+            'date_of_birth' => $request->date_of_birth,
+            'address' => $request->address,
+            'phone_number' => $request->phone_number,
+            'marital_status' => $request->marital_status,
+            'salary' => $request->salary,
         ]);
 
-        Role::create([ 
-        'user_id' => $user->id,
-        'name' => 'user',]        
-        );
-
-        return redirect()->route('admin.dashboard')->with('success', 'Employee added successfully.');
+        // Chuyển hướng về trang danh sách nhân viên với thông báo thành công
+        return redirect()->route('admin.employeeList')->with('success', 'Employee added successfully.');
     }
 }

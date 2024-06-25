@@ -1,83 +1,93 @@
-/* admin.css */
-
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
 }
 
-.header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
+ .header, .footer {
     text-align: center;
-}
-
-.header h1 {
-    margin: 0;
+    margin-bottom: 20px;
 }
 
 .content {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-left: 10%;
+    padding: 20px 40px;
+    width: 70%;
 }
 
-form {
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.form-group {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 label {
-    margin-bottom: 8px;
-    font-weight: bold;
+    color: #555;
+    flex: 1;
+    margin-right: 10px;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="date"],
-input[type="number"],
-select {
-    margin-bottom: 20px;
+input[type="text"], input[type="email"], input[type="password"], input[type="date"], input[type="number"], select {
+    flex: 2;
     padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
 button {
-    padding: 10px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #28a745;
+    background-color: #FF464F;
+    color: white;
     border: none;
-    border-radius: 4px;
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
+    width: 100%;
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #e03e48;
 }
 
-.footer {
-    text-align: center;
-    margin-top: 20px;
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.alert-danger ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.alert-danger li {
+    list-style-type: disc;
 }
 
 .footer a {
-    color: #007bff;
+    color: #FF464F;
     text-decoration: none;
-    font-size: 16px;
-    transition: color 0.3s;
+    font-weight: bold;
+    transition: color 0.3s ease;
 }
 
 .footer a:hover {
-    color: #0056b3;
+    color: #e03e48;
+}
+
+.gender {
+    margin-right: 5px;
+}
+
+.gender + label {
+    margin-right: 20px;
 }
