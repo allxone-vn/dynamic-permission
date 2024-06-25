@@ -91,4 +91,24 @@ class AdminController extends Controller
         // Chuyển hướng về trang danh sách nhân viên với thông báo thành công
         return redirect()->route('admin.employeeList')->with('success', 'Employee added successfully.');
     }
+
+public function deleteUser($id)
+{
+    // Tìm user để xóa
+    $user = User::find($id);
+
+    if (!$user) {
+        return redirect()->back()->with('error', 'User not found.');
+    }
+
+    // Xóa user
+    $deleted = $user->delete();
+
+    if ($deleted) {
+        return redirect()->back()->with('success', 'User has been deleted successfully.');
+    } else {
+        return redirect()->back()->with('error', 'Failed to delete user.');
+    }
+}
+    
 }

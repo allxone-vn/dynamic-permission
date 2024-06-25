@@ -42,6 +42,7 @@ Route::get('/admin/add-employee', [AdminController::class, 'showAddEmployeeForm'
 
 Route::post('/admin/add-employee', [AdminController::class, 'storeEmployee'])->name('admin.storeEmployee');
 
+Route::get('/admin/delete/{id}', [AdminController::class, 'deleteUser'])->name('admin.deleteUser');
 
 Route::middleware([
     'auth:sanctum',
