@@ -8,60 +8,86 @@
 </head>
 <body>
     <div class="profile-container">
-        <h1>Profile</h1>
+        <form action="<?= site_url('/profile/updateProfile') ?>" method="post">
+            <h1>Profile</h1>
+            
+            <input type="hidden" name="id" value="<?= $profile['id'] ?>">
 
-        <div class="profile-item">
-            <label for="full_name">Full name</label>
-            <input type="text" id="full_name" value="<?= $profile['full_name'] ?>" readonly>
-            <p class="note">Enter your name, so people you know can recognize you. No "&lt;" or "&gt;"</p>
-        </div>
+            <div class="profile-item">
+                <label for="full_name">Full name</label>
+                <input type="text" id="full_name" name="full_name" value="<?= $profile['full_name'] ?>">
+                <p class="note">Enter your name, so people you know can recognize you. No "&lt;" or "&gt;"</p>
+            </div>
 
-        <div class="profile-item">
-            <label for="birthdate">Birthdate</label>
-            <input type="date" id="birthdate" value="<?= $profile['birthdate'] ?>" readonly>
-        </div>
+            <div class="profile-item">
+                <label for="birthdate">Birthdate</label>
+                <input type="date" id="birthdate" name="birthdate" value="<?= $profile['birthdate'] ?>">
+            </div>
 
-        <div class="profile-item">
-            <label for="gender">Gender</label>
-            <input type="text" id="gender" value="<?= $profile['gender'] ?>" readonly>
-        </div>
+            <div class="profile-item">
+                <label for="gender">Gender</label>
+                <input type="text" id="gender" name="gender" value="<?= $profile['gender'] ?>">
+            </div>
 
-        <div class="profile-item">
-            <label for="phone_number">Phone Number</label>
-            <input type="text" id="phone_number" value="<?= $profile['phone_number'] ?>" readonly>
-        </div>
-        <div class="profile-item">
-            <label for="department_id">Department </label>
-            <input type="text" id="department" value="<?= $profile['department_name'] ?>" readonly>
-        </div>
+            <div class="profile-item">
+                <label for="phone_number">Phone Number</label>
+                <input type="text" id="phone_number" name="phone_number" value="<?= $profile['phone_number'] ?>">
+            </div>
 
-        <div class="profile-item">
-            <label for="address">Address</label>
-            <textarea id="address" rows="3" readonly><?= $profile['address'] ?></textarea>
-        </div>
+            <div class="profile-item">
+                <label for="department_id">Department </label>
+                <input type="text" id="department" value="<?= $profile['department_name'] ?>" readonly>
+            </div>
 
-        <div class="profile-item">
-            <label for="marital_status">Marital Status</label>
-            <input type="text" id="marital_status" value="<?= $profile['marital_status'] ?>" readonly>
-        </div>
+            <div class="profile-item">
+                <label for="address">Address</label>
+                <textarea id="address" name="address" rows="3"><?= $profile['address'] ?></textarea>
+            </div>
 
-        <div class="profile-item">
-            <label for="start_date">Start Date</label>
-            <input type="date" id="start_date" value="<?= $profile['start_date'] ?>" readonly>
-        </div>
+            <div class="profile-item">
+                <label for="marital_status">Marital Status</label>
+                <input type="text" id="marital_status" name="marital_status" value="<?= $profile['marital_status'] ?>">
+            </div>
 
-        <div class="profile-item">
-            <label for="salary">Salary</label>
-            <input type="text" id="salary" value="<?= $profile['salary'] ?>" readonly>
-        </div>
+            <div class="profile-item">
+                <label for="start_date">Start Date</label>
+                <input type="date" id="start_date" value="<?= $profile['start_date'] ?>" readonly>
+            </div>
 
-        <div class="profile-item">
-            <label for="allowance">Allowance</label>
-            <input type="text" id="allowance" value="<?= $profile['allowance'] ?>" readonly>
-        </div>
+            <div class="profile-item">
+                <label for="salary">Salary</label>
+                <input type="text" id="salary" value="<?= $profile['salary'] ?>" readonly>
+            </div>
 
+            <div class="profile-item">
+                <label for="allowance">Allowance</label>
+                <input type="text" id="allowance" value="<?= $profile['allowance'] ?>" readonly>
+            </div>
 
-    
+            <div class="profile-item">
+                <button type="submit" class="create">Update profile</button>
+            </div>
+        </form>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+<!-- Display SweetAlert notifications -->
+<?php if (session()->getFlashdata('error')): ?>
+    <script>
+        Swal.fire({
+            icon: 'error',
+            text: '<?= esc(session()->getFlashdata('error')) ?>'
+        });
+    </script>
+<?php endif; ?>
+    <?php if (session()->getFlashdata('success')): ?>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                text: '<?= esc(session()->getFlashdata('success')) ?>'
+            });
+        </script>
+    <?php endif; ?>
 </body>
 </html>

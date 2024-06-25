@@ -63,4 +63,48 @@ class ProfileController extends BaseController
 
         echo view('layout', $data);
     }
+    public function updateProfile()
+    {
+        // Get the request instance
+        $request = \Config\Services::request();
+
+        // Load the Profile model
+        $profileModel = new Profiles();
+
+        // Set validation rules
+        $validationRules = [
+            'full_name' => 'required|',
+            'birthdate' => 'required|valid_date',
+            'gender' => 'required|alpha',
+            'phone_number' => 'required|numeric',
+            'address' => 'required',
+            'marital_status' => 'required|alpha',
+        ];
+
+        if ($this->validate($validationRules)) {
+            // Get input values
+            $data = [
+                'full_name' => $request->getPost('full_name'),
+                'birthdate' => $request->getPost('birthdate'),
+                'gender' => $request->getPost('gender'),
+                'phone_number' => $request->getPost('phone_number'),
+                'address' => $request->getPost('address'),
+                'marital_status' => $request->getPost('marital_status'),
+            ];
+
+            // Assuming 'id' is passed as a hidden field in the form
+            $session = session();
+            // Get the username from the session
+            $id = $request->getPost('id');
+
+            if ($profileModel->update($id, $data)) {
+                return redirect()->to('/profile')->with('success', 'Profile updated successfully');
+            } else {
+                return redirect()->back()->with('error', 'Failed to update profile');
+            }
+        } else {
+            // Validation failed
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+    }
 }

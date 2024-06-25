@@ -38,4 +38,5 @@ $routes->get('/createEmployee', 'Dashboard::createEmployee');
 $routes->post('/addEmployee', 'CreateE::add');
 //delete
 $routes->post('/createE/delete', 'CreateE::delete');
-
+//updateprofile
+$routes->post('/profile/updateProfile', 'ProfileController::updateProfile');
