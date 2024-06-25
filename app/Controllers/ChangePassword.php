@@ -10,7 +10,7 @@ class ChangePassword extends BaseController
 {
     public function index()
     {
-        return view('auth/changepass');
+        return view('Home/changepass');
     }
     public function changePassword(){
         $session = session();

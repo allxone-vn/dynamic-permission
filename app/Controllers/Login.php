@@ -30,7 +30,7 @@ class Login extends BaseController
                     'username' => $user['Username'],
                     'logged_in' => TRUE
                 ]);
-                return redirect()->to('/home');
+                return redirect()->to('/layout');
             } else {
                 return view('auth/login', ['error' => 'Invalid Username or Password']);
             }
