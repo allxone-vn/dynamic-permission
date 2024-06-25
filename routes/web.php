@@ -30,7 +30,9 @@ Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+//admin
 Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
 
 Route::get('/admin/employee-list', [AdminController::class, 'employeeList'])->name('admin.employeeList');
 

@@ -8,6 +8,7 @@ use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Auth;
+use DB;
 
 class AdminController extends Controller
 {
@@ -16,7 +17,7 @@ class AdminController extends Controller
         return view('dashboard');
     }
 
-    public function employeeList()
+    public function profile()
     {
          // Lấy thông tin người dùng hiện tại
          $user = Auth::user();
@@ -26,6 +27,17 @@ class AdminController extends Controller
  
          // Trả về view với thông tin người dùng và hồ sơ
          return view('profile', compact('user', 'profile'));
+    }
+
+    public function employeeList()
+    {
+        $employee = DB::table('users')
+        ->join('user_profiles', 'users.id', '=', 'user_profiles.user_id')
+        ->select('users.*', 'user_profiles.*')
+        ->get();
+
+        // Trả về view với danh sách người dùng và hồ sơ
+        return view('employee_list', compact('employee'));
     }
 
     // public function showAddEmployeeForm()

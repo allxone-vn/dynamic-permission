@@ -34,19 +34,11 @@
             <td>{{ $profile->phone_number }}</td>        
             <td>{{ $profile->marital_status }}</td>
             <td>{{ $profile->salary }}</td>
-
-            {{-- department đã được định nghĩa bên model UserProfile --}}
         </tr>
     </table>
     @else
     <p>No profile information available.</p>
     @endif
-
-    {{-- @if ($profile && in_array($profile->department->name, ['Human Resources', 'Finance']))
-        <div class="employee-list">
-            <a href="{{ route('employee.list') }}">View Employee List</a>
-        </div>
-    @endif --}}
 
     <form action="{{ route('changePassword_form') }}" method="get">
         @csrf

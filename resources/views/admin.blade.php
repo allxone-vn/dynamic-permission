@@ -11,7 +11,6 @@
     />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
-    <link rel="stylesheet" href="css/register.css">
     <title>ADMIN DASHBOARD</title>
   </head>
   <body id="body">
@@ -57,16 +56,15 @@
         <div class="sidebar__menu">
           <div class="sidebar__link active_menu_link">
             <i class="fa fa-home"></i>
-            <a href="#">Dashboard</a>
+            <a href="{{ route('admin.dashboard') }}">Dashboard</a>
           </div>
-          <h2>MNG</h2>
           <div class="sidebar__link">
             <i class="fas fa-user"></i>
-            <a href="{{ route('admin.employeeList') }}">Profile</a>
+            <a href="{{ route('admin.profile') }}">Profile</a>
           </div>
           <div class="sidebar__link">
             <i class="fas fa-list"></i>
-            <a href="">Employee Management</a>
+            <a href="{{ route('admin.employeeList') }}">Employee Management</a>
           </div>
           <div class="sidebar__link">
             <i class="fa fa-archive"></i>
@@ -96,6 +94,6 @@
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
   </body>
 </html>
