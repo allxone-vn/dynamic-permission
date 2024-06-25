@@ -36,3 +36,6 @@ $routes->get('Employee', 'Employee::show');
 $routes->get('/createEmployee', 'Dashboard::createEmployee');
 //add
 $routes->post('/addEmployee', 'CreateE::add');
+//delete
+$routes->post('/createE/delete', 'CreateE::delete');
+

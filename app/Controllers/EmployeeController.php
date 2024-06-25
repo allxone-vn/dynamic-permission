@@ -27,7 +27,7 @@ class EmployeeController extends BaseController
         $profiles = $profileModel->join('Department', 'userprofiles.department_id = Department.id')
                                 ->join('User', 'userprofiles.UserID = User.UserID')
                                 ->join('Role', 'User.role_id = Role.role_id')
-                                ->select('userprofiles.*, Department.department_name, User.username,Role.role_name')
+                                ->select('userprofiles.*, Department.department_name, User.username,Role.role_name,User.UserID')
                                 ->findAll(); // Assuming findAll() retrieves all records
 
         // Pass the profiles data to the view

@@ -105,6 +105,35 @@ class CreateE extends BaseController
         // If transaction succeeds, redirect to the home page with success message
         return redirect()->to('/Employee')->with('success', 'Employee created successfully');
     }
+    public function delete()
+    {
+        // Get the user ID from the POST request
+        $userId = $this->request->getPost('user_id');
+
+        // Start a transaction
+        $db = \Config\Database::connect();
+        $db->transStart();
+
+        // Delete the user profile
+        $userProfileModel = new Profiles();
+        $userProfileModel->where('UserID', $userId)->delete();
+
+        // Delete the user
+        $userModel = new UserModel();
+        $userModel->delete($userId);
+
+        // Complete the transaction
+        $db->transComplete();
+
+        if ($db->transStatus() === FALSE) {
+            // If transaction fails, redirect back with error
+            return redirect()->back()->with('error', 'Failed to delete employee');
+        }
+
+        // If transaction succeeds, redirect to the home page with success message
+        return redirect()->to('/Employee')->with('success', 'Employee deleted successfully');
+    }
+
 }
 
 ?>
