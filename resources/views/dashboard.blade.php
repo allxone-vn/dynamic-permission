@@ -1,15 +1,58 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('admin')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-welcome />
-            </div>
-        </div>
+@section('content')
+<div class="main__title">
+    <img src="{{ asset('assets/hello.svg') }}" alt="" />
+    <div class="main__greeting">
+      <h1>Hello</h1>
+      <p>Welcome to your admin dashboard</p>
     </div>
-</x-app-layout>
+  </div>
+
+  <!-- MAIN TITLE ENDS HERE -->
+
+  <!-- MAIN CARDS STARTS HERE -->          
+  <div class="main__cards">
+
+    <div class="card">
+      <i
+        class="fa fa-user-o fa-2x text-lightblue"
+        aria-hidden="true"
+      ></i>
+      <div class="card_inner">
+        <p class="text-primary-p">Number of Subscribers</p>
+        <span class="font-bold text-title">578</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <i class="fa fa-calendar fa-2x text-red" aria-hidden="true"></i>
+      <div class="card_inner">
+        <p class="text-primary-p">Times of Watching</p>
+        <span class="font-bold text-title">2467</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <i
+        class="fa fa-video-camera fa-2x text-yellow"
+        aria-hidden="true"
+      ></i>
+      <div class="card_inner">
+        <p class="text-primary-p">Number of Videos</p>
+        <span class="font-bold text-title">340</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <i
+        class="fa fa-thumbs-up fa-2x text-green"
+        aria-hidden="true"
+      ></i>
+      <div class="card_inner">
+        <p class="text-primary-p">Number of Likes</p>
+        <span class="font-bold text-title">645</span>
+      </div>
+    </div>
+  </div>
+@endsection

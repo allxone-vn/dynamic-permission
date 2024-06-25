@@ -7,18 +7,25 @@ use App\Models\UserProfile;
 use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Auth;
 
 class AdminController extends Controller
 {
     public function dashboard()
     {
-        return view('admin');
+        return view('dashboard');
     }
 
     public function employeeList()
     {
-        $employees = UserProfile::with('user', 'department')->get();
-        return view('employee_list', compact('employees'));
+         // Lấy thông tin người dùng hiện tại
+         $user = Auth::user();
+        
+         // Lấy thông tin hồ sơ người dùng
+         $profile = UserProfile::where('user_id', $user->id)->first();
+ 
+         // Trả về view với thông tin người dùng và hồ sơ
+         return view('profile', compact('user', 'profile'));
     }
 
     // public function showAddEmployeeForm()

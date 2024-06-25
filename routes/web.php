@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\clogin;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\LoginController;
@@ -20,12 +19,6 @@ Route::get('/login', [LoginController::class, 'index']);
 Route::get('/change-password', [UserController::class, 'index'])->name('changePassword_form');
 
 Route::post('/change-password', [UserController::class, 'changePassword'])->name('change.password');
-
-
-// Route::group(['middleware' => ['auth', 'checkPermissions:full_name,read']], function () {
-//     Route::get('/home', [HomeController::class, 'index']);
-// });
-
 
 Route::post('/login', [LoginController::class, 'postLogin'])->name('login');
 
