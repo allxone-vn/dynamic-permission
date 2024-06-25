@@ -1,0 +1,38 @@
+.Employee-container{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.Employee-container h1{
+    text-align: center;
+}
+.Employee-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+.Employee-container th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+.Employee-container th {
+    background-color: #f2f2f2;
+    color: blue;
+}
+.Employee-container .action{
+    width: 70px;
+}
+.Employee-container .sua, .xoa{
+    border: none;
+}
+.Employee-container .xoa{
+    color:#c71818;
+}
+.Employee-container .create{
+    margin-left: 20px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #c71818;
+    border-color: #c71818;
+    color:#f2f2f2;
+}

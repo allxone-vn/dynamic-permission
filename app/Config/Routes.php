@@ -9,7 +9,7 @@ $routes->get('/', 'Login');
 $routes->get('/login', 'Login');
 $routes->post('login/auth', 'Login::auth');
 $routes->get('/home', 'Home::index');
-$routes->get('logout', 'home::logout');
+$routes->get('logout', 'Dashboard::logout');
 $routes->get('auth/google', 'Auth::googleLogin');
 $routes->get('auth/google/googleCallback', 'Auth::googleCallback');
 $routes->post('/RegisterAccount','RegisterAccount::register');
@@ -32,3 +32,7 @@ $routes->get('profile', 'ProfileController::show');
 // Employee
 $routes->get('/Employee', 'Dashboard::employee');
 $routes->get('Employee', 'Employee::show');
+// Create Employee
+$routes->get('/createEmployee', 'Dashboard::createEmployee');
+//add
+$routes->post('/addEmployee', 'CreateE::add');

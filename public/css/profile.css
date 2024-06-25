@@ -1,0 +1,42 @@
+.profile-container {
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+.profile-container h1 {
+    text-align: center;
+}
+
+.profile-container .profile-item {
+    margin: 10px 0;
+}
+
+.profile-container .profile-item label {
+    font-weight: bold;
+    display: block;
+}
+
+.profile-container .profile-item input,
+.profile-container .profile-item textarea,
+.profile-container .profile-item select{
+    width: 80%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.radio input{
+    margin: 5px;
+}
+.profile-container .profile-item .note {
+    font-size: 0.9em;
+    color: #777;
+}
+.create{
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #c71818;
+    border-color: #c71818;
+    color:#f2f2f2;
+}

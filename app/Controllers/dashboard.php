@@ -41,6 +41,13 @@ class Dashboard extends Controller
         $EmployeeController->show();
     }    
 
+    public function createEmployee()
+    { 
+        $CreateE = new CreateE();
+        $CreateE->show();
+    }
+
+
     public function logout() {
         $session = session();
         $session->destroy();

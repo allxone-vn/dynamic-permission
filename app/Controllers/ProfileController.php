@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Profiles;
 use App\Models\UserModel;
-use App\Models\DepmantModel; 
+use App\Models\DepartmentModel; 
 
 class ProfileController extends BaseController
 {
@@ -43,7 +43,7 @@ class ProfileController extends BaseController
             return redirect()->to('/profile/not_found'); // Redirect to an appropriate page
         }
 
-        $depmantModel = new DepmantModel();
+        $depmantModel = new DepartmentModel();
 
         // Perform a join to fetch department details related to the profile
         $profileWithDepartment = $profileModel->join('Department', 'userprofiles.department_id = Department.id')

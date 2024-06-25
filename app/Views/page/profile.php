@@ -4,41 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Settings</title>
-    <link rel="stylesheet" href="<?= base_url('css/index.css') ?>">
-    <style>
-        .profile-container {
-            padding: 20px;
-            border: 1px solid #ccc;
-            background-color: #f9f9f9;
-        }
-
-        .profile-container h1 {
-            text-align: center;
-        }
-
-        .profile-container .profile-item {
-            margin: 10px 0;
-        }
-
-        .profile-container .profile-item label {
-            font-weight: bold;
-            display: block;
-        }
-
-        .profile-container .profile-item input,
-        .profile-container .profile-item textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .profile-container .profile-item .note {
-            font-size: 0.9em;
-            color: #777;
-        }
-    </style>
+    <link rel="stylesheet" href="<?= base_url('css/profile.css') ?>">
 </head>
 <body>
     <div class="profile-container">
