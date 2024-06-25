@@ -1,11 +1,13 @@
 @extends('admin')
 
 @section('content')
-    <div class="container mt-5 d-flex justify-content-center">
-        <div class="card w-75">
-            <div class="card-body">
-                <h2 class="card-title text-center">User Profile</h2>
-                <table class="table table-striped">
+    <div class="profile-container mt-5 d-flex justify-content-center">
+        <div class="profile-content w-75">
+            <div class="profile-header">
+                <h2 class="profile-title text-center">User Profile</h2>
+            </div>
+            <div class="profile-body">
+                <table class="profile-table table table-striped">
                     <tr>
                         <th>Full Name</th>
                         <td>{{ $profile->full_name }}</td>

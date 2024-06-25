@@ -536,3 +536,52 @@ main {
   }
 }
 
+/* admin.css */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+}
+
+.profile-container {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.profile-content {
+  width: 75%;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  border: none;
+  background-color: #fff;
+  padding: 20px;
+}
+
+.profile-header {
+  margin-bottom: 20px;
+}
+
+.profile-title {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.profile-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.profile-table th, .profile-table td {
+  padding: 15px;
+  vertical-align: middle;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.profile-table th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+

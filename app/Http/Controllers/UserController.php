@@ -36,7 +36,11 @@ class UserController extends Controller
         $user->password = Hash::make($request->new_password);
         $user->save();
     
-        return redirect()->route('home')->with('success', 'Password changed successfully.');
+        if ($user->role_id == 1) {
+            return redirect('/admin');
+        } else {
+            return redirect('/home');
+        }
     }
     
 }
