@@ -8,7 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ResetPasswordController;
-
+use App\Http\Controllers\ProfileController;
 
 // Route::get('/', function () {
 //     return view('login');
@@ -43,6 +43,8 @@ Route::get('/admin/add-employee', [AdminController::class, 'showAddEmployeeForm'
 Route::post('/admin/add-employee', [AdminController::class, 'storeEmployee'])->name('admin.storeEmployee');
 
 Route::get('/admin/delete/{id}', [AdminController::class, 'deleteUser'])->name('admin.deleteUser');
+
+Route::put('/profile/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
 
 Route::middleware([
     'auth:sanctum',
