@@ -17,6 +17,7 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', [LoginController::class, 'index']);
 Route::get('/login', [LoginController::class, 'index']);
 Route::get('/change-password', [UserController::class, 'index'])->name('changePassword_form');
+Route::get('/change-password', [UserController::class, 'changePassForm'])->name('changePassword_form_emp');
 
 Route::post('/change-password', [UserController::class, 'changePassword'])->name('change.password');
 
@@ -61,9 +62,15 @@ Route::get('auth/facebook', [SocialAuthController::class, 'redirectToFacebook'])
 
 Route::get('auth/facebook/callback', [SocialAuthController::class, 'handleFacebookCallback']);
 
+Route::post('/account/disconnect', [UserController::class, 'disconnectFacebook'])->name('facebook.disconnect');
+Route::get('/account', [UserController::class, 'showAccount'])->name('show.account');
+
+
+
 Route::get('auth/google', [SocialAuthController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [SocialAuthController::class, 'handleGoogleCallback']);
 
 
 Route::get('forgot-password', [ResetPasswordController::class, 'index'])->name('forgot');
 Route::post('password/email', [ResetPasswordController::class, 'sendMail'])->name('password.email');
+

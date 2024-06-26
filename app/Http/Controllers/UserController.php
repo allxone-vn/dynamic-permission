@@ -14,6 +14,14 @@ class UserController extends Controller
         return view('change_password');
     }
 
+    public function showAccount(){
+        return view('account');
+    }
+
+    public function changePassForm(){
+        return view('change_pass_emp');
+    }
+
     // Phương thức để xử lý thay đổi mật khẩu
     public function changePassword(Request $request)
     {
@@ -43,4 +51,18 @@ class UserController extends Controller
         }
     }
     
+    public function disconnectFacebook(Request $request)
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return redirect()->back()->with('error', 'User not authenticated.');
+        }
+
+        // Giả sử bạn có một cột `facebook_id` trong bảng `users` để lưu trữ thông tin kết nối Facebook
+        $user->facebook_id = null;
+        $user->save();
+
+        return redirect()->back()->with('success', 'Disconnected from Facebook successfully.');
+    }
 }

@@ -13,7 +13,7 @@ class HomeController extends Controller
         // Lấy thông tin UserProfile của người dùng
         $profile = UserProfile::where('user_id', $user->id)->first();
 
-        return view('home', compact('user', 'profile'));
+        return view('user_profile', compact('user', 'profile'));
     }
 
     public function employeeList()
