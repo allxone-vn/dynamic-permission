@@ -31,20 +31,19 @@ class ProfileController extends BaseController
             return redirect()->to('/login'); // Redirect to login or appropriate page
         }
 
-        $IDProfiles = $user['UserID'];
-
+        $UserID = $user['UserID'];
         // Instantiate the Profiles model
         $profileModel = new Profiles();
-
         // Find the profile by UserID
-        $profile = $profileModel->where('IDProfiles', $IDProfiles)->first();
+        $profile = $profileModel->where('UserID', $UserID)->first();
         if (!$profile) {
             // Handle the case when profile is not found
             return redirect()->to('/profile/not_found'); // Redirect to an appropriate page
         }
-
+        
         $depmantModel = new DepartmentModel();
-
+        
+        $IDProfiles = $profile['IDProfiles'];
         // Perform a join to fetch department details related to the profile
         $profileWithDepartment = $profileModel->join('Department', 'userprofiles.department_id = Department.id')
                                             ->where('userprofiles.IDProfiles', $IDProfiles)

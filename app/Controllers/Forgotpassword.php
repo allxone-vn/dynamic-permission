@@ -25,7 +25,6 @@ class Forgotpassword extends Controller
         // Cập nhật mật khẩu mới vào database
         $userModel = new UserModel();
         $user = $userModel->findByEmail($userEmail);
-        echo var_dump($user);
         if ($user) {
            
             $userModel->updatePasswordByEmail($userEmail, password_hash($newPassword, PASSWORD_DEFAULT));
@@ -42,7 +41,7 @@ class Forgotpassword extends Controller
         }
 
         // Redirect back to forgot password page
-        return redirect()->to('/login');
+        // return redirect()->to('/login');
     }
 
     private function generateRandomPassword($length = 10)

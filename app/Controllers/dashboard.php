@@ -46,6 +46,12 @@ class Dashboard extends Controller
         $CreateE = new CreateE();
         $CreateE->show();
     }
+    
+    public function Account()
+    { 
+        $Account = new Account();
+        $Account->show();
+    }
 
 
     public function logout() {

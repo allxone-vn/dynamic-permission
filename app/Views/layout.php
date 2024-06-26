@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $title ?></title>
     <link rel="stylesheet" type="text/css" href="<?= base_url('css/index.css') ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -42,8 +41,8 @@
                     <a href="<?= site_url('/Employee') ?>">Employee</a>
                 </div>
                 <div class="sidebar__link">
-                    <i class="fa fa-archive"></i>
-                    <a href="<?= site_url('#') ?>">Warehouse</a>
+                <i class="fa-solid fa-user-gear"></i>
+                    <a href="<?= site_url('/Account') ?>">Account</a>
                 </div>
                 <div class="sidebar__link">
                     <i class="fa fa-handshake-o"></i>

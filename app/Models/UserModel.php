@@ -63,4 +63,9 @@ class UserModel extends Model
     {
         return $this->where('Username', $email)->first();
     }
+
+    public function disconnectGoogle($id)
+    {
+        return $this->update($id, ['google_id' => 0]);
+    }
 }

@@ -24,9 +24,7 @@ class Auth extends Controller
     public function googleCallback()
     {
         $googleClient = Services::googleClient();
-
-          // Thiết lập chứng chỉ CA hoặc bỏ qua kiểm tra SSL
-          $googleClient->setHttpClient(new \GuzzleHttp\Client([
+        $googleClient->setHttpClient(new \GuzzleHttp\Client([
             'verify' => 'D:\Laragon\laragon\etc\ssl\cacert.pem' // Đường dẫn tới tệp chứng chỉ CA
         ]));
 
@@ -45,12 +43,27 @@ class Auth extends Controller
                 $existingUser = $userModel->findUserByGoogleId($googleUser['sub']) ?? $userModel->findUserByUsername($googleUser['email']);
 
                 if ($existingUser) {
+                    if ($existingUser['google_id'] == 0) {
+                        // Cập nhật google_id và username nếu google_id = 0
+                        $updateData = [
+                            'Username' => $googleUser['email'],
+                            'google_id' => $googleUser['sub'],
+                            'updated_at' => date('Y-m-d H:i:s'),
+                        ];
+                        $userModel->update($existingUser['UserID'], $updateData);
+                    }
+
                     // Người dùng đã tồn tại, hiển thị thông tin
                     $data = [
                         'username' => $existingUser['Username'], // Đổi tên trường nếu cần
                         // Thêm các dữ liệu khác cần thiết để truyền qua view
                     ];
-                    return view('Home', $data);
+                    $session = session();
+                    $session->set([
+                        'username' => $data['username'],
+                        'logged_in' => TRUE
+                    ]);
+                    return redirect()->to('/layout');
                 } else {
                     // Người dùng không tồn tại, tạo mới
                     $newUserData = [
@@ -65,9 +78,13 @@ class Auth extends Controller
                     $userModel->insert($newUserData);
                     $data = [
                         'username' => $googleUser['email'], // Sử dụng email làm Username
-                        // Thêm các dữ liệu khác cần thiết để truyền qua view
                     ];
-                    return view('Home', $data);              
+                    $session = session();
+                    $session->set([
+                        'username' => $data['username'],
+                        'logged_in' => TRUE
+                    ]);
+                    return redirect()->to('/layout');           
                 }
 
             } catch (\Exception $e) {

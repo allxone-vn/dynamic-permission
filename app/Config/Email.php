@@ -40,6 +40,5 @@ class Email extends BaseConfig
         $this->SMTPHost = getenv('SMTPHOST');
         $this->SMTPUser = getenv('SMTPUSER');
         $this->SMTPPass = getenv('SMTPPASS');
-        $this->SMTPCrypto = getenv('email.SMTPCrypto');
-    }
+        }
 }

@@ -31,7 +31,7 @@ class RegisterAccount extends BaseController
                 'username' => $username, 
                 
             ];
-            return view('Home', $data);   
+            return view('/layout', $data);   
         } else {
             return redirect()->back()->withInput()->with('error', 'Failed to create account.');
         }

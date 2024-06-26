@@ -1,0 +1,29 @@
+.connect{
+    margin: 20px;
+}
+.text{
+    display: block;
+}
+.text p{
+    margin-top: 20px;
+}
+.nut{
+    margin-top: 20px;
+}
+.nut button{
+    padding: 10px;
+}
+.button {
+    display: inline-block;
+    width: fit;
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    text-align: left;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+.google { background-color: #CCCC; }
+.github { background-color: #CCCC; }

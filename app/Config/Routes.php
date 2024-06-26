@@ -8,7 +8,6 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Login');
 $routes->get('/login', 'Login');
 $routes->post('login/auth', 'Login::auth');
-$routes->get('/home', 'Home::index');
 $routes->get('logout', 'Dashboard::logout');
 $routes->get('auth/google', 'Auth::googleLogin');
 $routes->get('auth/google/googleCallback', 'Auth::googleCallback');
@@ -40,3 +39,7 @@ $routes->post('/addEmployee', 'CreateE::add');
 $routes->post('/createE/delete', 'CreateE::delete');
 //updateprofile
 $routes->post('/profile/updateProfile', 'ProfileController::updateProfile');
+//Account
+$routes->get('/Account', 'Dashboard::Account');
+$routes->get('/account', 'Account::show');
+$routes->get('/account/disconnectGoogle', 'Account::disconnectGoogle');

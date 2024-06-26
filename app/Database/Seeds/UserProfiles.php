@@ -20,7 +20,7 @@ class UserProfiles extends Seeder
                 'salary' => '5000.00',
                 'allowance' => '500.00',
                 'department_id' => 1,  // Ví dụ ID của phòng ban
-                'UserID' => 1,          // Tương ứng với UserID trong bảng User
+                'UserID' =>21,          // Tương ứng với UserID trong bảng User
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -35,7 +35,7 @@ class UserProfiles extends Seeder
                 'salary' => '6000.00',
                 'allowance' => '600.00',
                 'department_id' => 2,  // Ví dụ ID của phòng ban khác
-                'UserID' => 2,          // Tương ứng với UserID khác trong bảng User
+                'UserID' => 22,          // Tương ứng với UserID khác trong bảng User
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -50,7 +50,7 @@ class UserProfiles extends Seeder
                 'salary' => '5500.00',
                 'allowance' => '400.00',
                 'department_id' => 1,
-                'UserID' => 3,
+                'UserID' => 23,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -65,7 +65,7 @@ class UserProfiles extends Seeder
                 'salary' => '6200.00',
                 'allowance' => '700.00',
                 'department_id' => 2,
-                'UserID' => 4,
+                'UserID' => 24,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
@@ -80,7 +80,22 @@ class UserProfiles extends Seeder
                 'salary' => '4800.00',
                 'allowance' => '300.00',
                 'department_id' => 1,
-                'UserID' => 5,
+                'UserID' => 25,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'full_name' => 'Lâm Văn Hưng',
+                'birthdate' => '1987-06-30',
+                'gender' => 'Male',
+                'phone_number' => '111222333',
+                'address' => '890 Maple Ln, Anyvillage, USA',
+                'marital_status' => 'Single',
+                'start_date' => '2019-05-20',
+                'salary' => '4800.00',
+                'allowance' => '300.00',
+                'department_id' => 1,
+                'UserID' => 8,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
