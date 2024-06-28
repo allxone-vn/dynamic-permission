@@ -1,0 +1,17 @@
+.table th, .table td {
+    vertical-align: middle;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.text-center {
+    text-align: center;
+}
+.table-responsive{
+margin-left: 50px;
+}
+.btn{
+margin-left: 110px
+}

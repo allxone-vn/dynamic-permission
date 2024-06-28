@@ -3,12 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-      crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
     <title>ADMIN DASHBOARD</title>
@@ -36,6 +31,7 @@
       <main>
         <div class="main__container">
           @yield('content')
+          @yield('scripts')
         </div>
       </main>
 
@@ -67,16 +63,8 @@
             <a href="{{ route('admin.employeeList') }}">Employee Management</a>
           </div>
           <div class="sidebar__link">
-            <i class="fa fa-archive"></i>
-            <a href="#">Warehouse</a>
-          </div>
-          <div class="sidebar__link">
-            <i class="fa fa-handshake-o"></i>
-            <a href="#">Contracts</a>
-          </div>
-          <div class="sidebar__link">
-            <i class="fa fa-money"></i>
-            <a href="#">Payroll</a>
+            <i class="fas fa-users-cog"></i>
+            <a href="{{ route('permissions.index') }}">Permission</a>
           </div>
           <div class="sidebar__link">
             <i class="fas fa-key"></i>

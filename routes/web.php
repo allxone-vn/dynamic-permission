@@ -9,6 +9,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PermissionController;
 
 // Route::get('/', function () {
 //     return view('login');
@@ -74,3 +75,5 @@ Route::get('auth/google/callback', [SocialAuthController::class, 'handleGoogleCa
 Route::get('forgot-password', [ResetPasswordController::class, 'index'])->name('forgot');
 Route::post('password/email', [ResetPasswordController::class, 'sendMail'])->name('password.email');
 
+Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions.index');
+Route::post('/permissions', [PermissionController::class, 'update'])->name('permissions.update');
