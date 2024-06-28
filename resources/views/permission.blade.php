@@ -5,6 +5,17 @@
 @section('content')
 <div class="text-center mb-4">
     <h2>Permission Management</h2>
+    @if (session('success'))
+    <div style="float: right" class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if (session('error'))
+    <div style="float: right" class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
 </div>
     <div class="container mt-5"> 
         <!-- Chọn role -->

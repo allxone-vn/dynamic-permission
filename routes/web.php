@@ -17,7 +17,7 @@ use App\Http\Controllers\PermissionController;
 
 Route::get('/', [LoginController::class, 'index']);
 Route::get('/login', [LoginController::class, 'index']);
-Route::get('/change-password', [UserController::class, 'index'])->name('changePassword_form');
+Route::get('/admin/change-password', [UserController::class, 'index'])->name('changePassword_form');
 Route::get('/change-password', [UserController::class, 'changePassForm'])->name('changePassword_form_emp');
 
 Route::post('/change-password', [UserController::class, 'changePassword'])->name('change.password');
@@ -77,3 +77,6 @@ Route::post('password/email', [ResetPasswordController::class, 'sendMail'])->nam
 
 Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions.index');
 Route::post('/permissions', [PermissionController::class, 'update'])->name('permissions.update');
+
+Route::get('admin/employee/{id}/edit', [AdminController::class, 'editEmployee'])->name('admin.editEmployee');
+Route::put('admin/employee/{id}', [AdminController::class, 'updateEmployee'])->name('admin.updateEmployee');

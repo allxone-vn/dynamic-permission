@@ -68,7 +68,7 @@
           </div>
           <div class="sidebar__link">
             <i class="fas fa-key"></i>
-            <a href="{{ route('change.password') }}">Change password</a>
+            <a href="{{ route('changePassword_form') }}">Change password</a>
           </div>
           <div class="sidebar__logout">
             <a href="#" class="sidebar-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

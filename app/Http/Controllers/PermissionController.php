@@ -19,47 +19,58 @@ class PermissionController extends Controller
     public function update(Request $request)
     {
         $roleId = $request->input('role_id');
-        $attribute = $request->input('attribute');
-        $crudValues = $request->input('crud', []);
+        $crudData = $request->input('crud', []);
     
-        // Initialize an array to store the crud values
-        $crudArray = [
-            'create' => 0,
-            'read' => 0,
-            'update' => 0,
-            'delete' => 0,
-        ];
+        foreach ($crudData as $attribute => $crudValues) {
+            // Initialize an array to store the crud values
+            $crudArray = [
+                'create' => 0,
+                'read' => 0,
+                'update' => 0,
+                'delete' => 0,
+            ];
     
-        // Set 1 for checked checkboxes
-        foreach ($crudValues as $value) {
-            if (isset($crudArray[$value])) {
-                $crudArray[$value] = 1;
+            // Set 1 for checked checkboxes
+            foreach ($crudValues as $value) {
+                if (array_key_exists($value, $crudArray)) {
+                    $crudArray[$value] = 1;
+                }
             }
-        }
     
-        // Create the crudValue string
-        $crudValue = implode('', array_values($crudArray));
-        //dd($crudValue);
+            // Create the crudValue string
+            $crudValue = implode('', array_values($crudArray));
+            // dd($crudValue);
     
-        // Now you have $crudValue like '1000', '1100', etc. based on checked checkboxes
+            // Find the permission based on the attribute and crud value
+            $permission = Permission::where('attribute', $attribute)->where('crud_value', $crudValue)->first();
     
-        $permission = Permission::where('attribute', $attribute)->where('crud_value', $crudValue)->first();
-        //dd($permission);
-        if ($permission) {
-            RolePermission::updateOrCreate(
-                ['role_id' => $roleId, 'permission_id' => $permission->id],
-                ['role_id' => $roleId, 'permission_id' => $permission->id]
-            );
-        } else {
-            // Xóa nếu không có quyền này
-            RolePermission::where('role_id', $roleId)
+            // Check if a permission already exists for this role and attribute
+            $existingRolePermission = RolePermission::where('role_id', $roleId)
                 ->whereHas('permission', function ($query) use ($attribute) {
                     $query->where('attribute', $attribute);
                 })
-                ->delete();
+                ->first();
+    
+            if ($permission) {
+                if ($existingRolePermission) {
+                    // Update the existing RolePermission with the new permission_id
+                    $existingRolePermission->permission_id = $permission->id;
+                    $existingRolePermission->save();
+                } else {
+                    // Create a new RolePermission
+                    RolePermission::create([
+                        'role_id' => $roleId,
+                        'permission_id' => $permission->id,
+                    ]);
+                }
+            } else {
+                if ($existingRolePermission) {
+                    // Delete the existing RolePermission if no permission matches the crud value
+                    $existingRolePermission->delete();
+                }
+            }
         }
     
         return redirect()->back()->with('success', 'Permissions updated successfully.');
-    }
-    
+    }    
 }

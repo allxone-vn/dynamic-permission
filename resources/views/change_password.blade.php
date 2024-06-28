@@ -1,7 +1,7 @@
 @extends('admin')
 
 @section('content')
-<link rel="stylesheet" href="css/register.css">
+<link rel="stylesheet" href="{{ asset('css/register.css') }}">
 <div class="container col-md-4" id="changepass">
     <div class="form-container sign-up-container">
         <form action="{{ route('change.password') }}" method="POST">
