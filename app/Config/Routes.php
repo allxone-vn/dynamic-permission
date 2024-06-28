@@ -12,6 +12,7 @@ $routes->get('logout', 'Dashboard::logout');
 $routes->get('auth/google', 'Auth::googleLogin');
 $routes->get('auth/google/googleCallback', 'Auth::googleCallback');
 $routes->post('/RegisterAccount','RegisterAccount::register');
+
 // fogot-Password
 $routes->get('/forgotpassword','Forgotpassword');
 $routes->post('/forgotpassword', 'Forgotpassword::process');
@@ -25,21 +26,28 @@ $routes->post('reset-password', 'Resetpassword::process');
 $routes->get('/layout', 'Dashboard::index');
 $routes->get('/changepassword', 'Dashboard::changePassword');
 $routes->post('change-password', 'ChangePassword::changePassword');
+
 //profile
 $routes->get('/profile', 'Dashboard::profile');
 $routes->get('profile', 'ProfileController::show');
-// Employee
-$routes->get('/Employee', 'Dashboard::employee');
-$routes->get('Employee', 'Employee::show');
-// Create Employee
-$routes->get('/createEmployee', 'Dashboard::createEmployee');
-//add
-$routes->post('/addEmployee', 'CreateE::add');
-//delete
-$routes->post('/createE/delete', 'CreateE::delete');
 //updateprofile
 $routes->post('/profile/updateProfile', 'ProfileController::updateProfile');
 //Account
 $routes->get('/Account', 'Dashboard::Account');
 $routes->get('/account', 'Account::show');
 $routes->get('/account/disconnectGoogle', 'Account::disconnectGoogle');
+// Employee
+$routes->get('/Employee', 'Dashboard::employee');
+$routes->get('Employee', 'Employee::show');
+// changepassemployee
+$routes->get('LayoutEmploye/changepassword', 'LayoutEmploye::changePassword');
+// Create Employee
+$routes->get('/createEmployee', 'Dashboard::createEmployee');
+//add
+$routes->post('/addEmployee', 'CreateE::add');
+//delete
+$routes->post('/createE/delete', 'CreateE::delete');
+// page Employee
+$routes->get('/LayoutEmploye', 'LayoutEmploye::index');
+$routes->get('LayoutEmploye/Permission', 'LayoutEmploye::Permission');
+$routes->get('LayoutEmploye/PermissionSelect', 'PermissionSelect::index');

@@ -11,7 +11,7 @@ class Account extends BaseController
     public function show()
     {
         $userModel = new UserModel();
-      $session = session();
+        $session = session();
 
         // Get the username from the session
         $username = $session->get('username');
@@ -21,8 +21,11 @@ class Account extends BaseController
             'title' => 'Create Employee',
             'content' => view('page/Account', ['user' => $user])
         ];
-
-        echo view('layout', $data);
+        if ($username === 'admin') {
+            echo view('layout', $data);
+        } else {
+            echo view('LayoutEmploye', $data);
+        }
     }
 
     public function disconnectGoogle()

@@ -28,9 +28,15 @@ class Login extends BaseController
                 $session->set([
                     'UserID' => $user['UserID'],
                     'username' => $user['Username'],
+                    'role_id' => $user['role_id'],
                     'logged_in' => TRUE
                 ]);
-                return redirect()->to('/layout');
+                if ($user['role_id'] == 1) {
+                    return redirect()->to('/layout');
+                } else {
+                    
+                    return redirect()->to('/LayoutEmploye');
+                }
             } else {
                 return view('auth/login', ['error' => 'Invalid Username or Password']);
             }

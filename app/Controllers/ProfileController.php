@@ -60,7 +60,11 @@ class ProfileController extends BaseController
             'content' => view('page/profile', ['profile' => $profileWithDepartment])
         ];
 
-        echo view('layout', $data);
+        if ($username === 'admin') {
+            echo view('layout', $data);
+        } else {
+            echo view('LayoutEmploye', $data);
+        }
     }
     public function updateProfile()
     {
@@ -69,10 +73,9 @@ class ProfileController extends BaseController
 
         // Load the Profile model
         $profileModel = new Profiles();
-
         // Set validation rules
         $validationRules = [
-            'full_name' => 'required|',
+            'full_name' => 'required',
             'birthdate' => 'required|valid_date',
             'gender' => 'required|alpha',
             'phone_number' => 'required|numeric',
@@ -90,13 +93,25 @@ class ProfileController extends BaseController
                 'address' => $request->getPost('address'),
                 'marital_status' => $request->getPost('marital_status'),
             ];
-
             // Assuming 'id' is passed as a hidden field in the form
             $session = session();
-            // Get the username from the session
-            $id = $request->getPost('id');
 
-            if ($profileModel->update($id, $data)) {
+            $username = $session->get('username');
+            if (!$username) {
+                // Handle the case when username is not found in session
+                return redirect()->to('/login'); // Redirect to login or appropriate page
+            }
+    
+            // Instantiate the Users model
+            $userModel = new UserModel();
+            // Find the user by username
+            $user = $userModel->where('Username', $username)->first();
+            $UserID = $user['UserID'];
+            $profileModel = new Profiles();
+            // Find the profile by UserID
+            $profile = $profileModel->where('UserID', $UserID)->first();
+            $IDProfiles = $profile['IDProfiles'];
+            if ($profileModel->update($IDProfiles, $data)) {
                 return redirect()->to('/profile')->with('success', 'Profile updated successfully');
             } else {
                 return redirect()->back()->with('error', 'Failed to update profile');

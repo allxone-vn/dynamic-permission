@@ -30,32 +30,47 @@
             <div class="sidebar__menu">
                 <div class="sidebar__link">
                     <i class="fa fa-home"></i>
-                    <a href="<?= site_url('/layout') ?>">Dashboard</a>
+                    <a href="<?= site_url('/LayoutEmploye') ?>">Dashboard</a>
                 </div>
                 <div class="sidebar__link">
                     <i class="fa-solid fa-address-card"></i>
-                    <a href="<?= site_url('/profile') ?>">Profile</a>
+                    <a href="<?= site_url('profile') ?>">Profile</a>
                 </div>
-                <div class="sidebar__link">
-                <i class="fa-solid fa-users-gear"></i>
-                    <a href="<?= site_url('/Employee') ?>">Employee</a>
-                </div>
+              
                 <div class="sidebar__link">
                 <i class="fa-solid fa-user-gear"></i>
-                    <a href="<?= site_url('/Account') ?>">Account</a>
+                    <a href="<?= site_url('Account') ?>">Account</a>
                 </div>
-                <div class="sidebar__link">
-                    <i class="fa fa-handshake-o"></i>
-                    <a href="javascript:void(0);">Contracts</a>
-                </div>
-                <div class="sidebar__link">
+
+                <?php 
+                $session = session();
+                $role_id = $session->get('role_id');
+                if ($role_id == '2'): ?>
+                    <div class="sidebar__link">
+                        <i class="fa fa-users"></i>
+                        <a href="<?= site_url('LayoutEmploye/Permission') ?>">Permission</a>
+                    </div>
+                <?php elseif ($role_id == '3'): ?>
+                    <div class="sidebar__link">
+                        <i class="fa fa-file-text"></i>
+                        <a href="<?= site_url('LayoutEmploye/Permission') ?>">Permission</a>
+                    </div>
+                <?php elseif ($role_id == '4'): ?>
+                    <div class="sidebar__link">
+                        <i class="fa fa-cog"></i>
+                        <a href="<?= site_url('LayoutEmploye/Permission') ?>">Permission</a>
+                    </div>
+            
+                <?php endif; ?>
+
+                <!-- <div class="sidebar__link">
                     <i class="fa fa-money"></i>
-                    <a href="javascript:void(0);">Payroll</a>
-                </div>
+                    <a href="">Payroll</a>
+                </div> -->
 
                 <div class="sidebar__link">
                     <i class="fa fa-lock"></i>
-                    <a href="<?= site_url('/changepassword') ?>">Password</a>
+                    <a href="<?= site_url('LayoutEmploye/changepassword') ?>">Password</a>
                 </div>
                 <div class="sidebar__logout">
                     <i class="fa fa-power-off"></i>

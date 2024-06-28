@@ -47,10 +47,9 @@ class ChangePassword extends BaseController
             $session->setFlashdata('error', 'New password must be different from the current password.');
             return redirect()->back();
         }
-
+        $UserID = $user['UserID'];
         // Update the password
-        $userModel->update($username, ['Pass' => password_hash('$newPassword', PASSWORD_DEFAULT)]);
-
+        $userModel->update($UserID, ['Pass' => password_hash($newPassword, PASSWORD_DEFAULT)]);
         $session->setFlashdata('success', 'Password changed successfully.');
         return redirect()->back();
     }

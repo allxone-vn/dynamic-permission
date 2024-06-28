@@ -4,15 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class RoleModel extends Model
+class RolePermissionModel extends Model
 {
-    protected $table            = 'role';
+    protected $table            = 'rolepermissions';
     protected $primaryKey       = 'role_id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['role_id','role_name','created_at', 'updated_at'];
+    protected $allowedFields    = ['role_id','IDPer','created_at', 'updated_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
