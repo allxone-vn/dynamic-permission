@@ -80,3 +80,6 @@ Route::post('/permissions', [PermissionController::class, 'update'])->name('perm
 
 Route::get('admin/employee/{id}/edit', [AdminController::class, 'editEmployee'])->name('admin.editEmployee');
 Route::put('admin/employee/{id}', [AdminController::class, 'updateEmployee'])->name('admin.updateEmployee');
+
+Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions.index');
+Route::post('/permissions/update', [PermissionController::class, 'update'])->name('permissions.update');

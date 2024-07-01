@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Role;
 use App\Models\Permission;
 use App\Models\RolePermission;
+use Illuminate\Support\Facades\DB;
 
 class PermissionController extends Controller
 {
@@ -13,7 +14,23 @@ class PermissionController extends Controller
     {
         $roles = Role::all();
         $attributes = Permission::select('attribute')->distinct()->get();
-        return view('permission', compact('roles', 'attributes'));
+
+        // Lấy danh sách các bảng trong database
+        $tables = $this->getDatabaseTables();
+        return view('permission', compact('roles', 'attributes', 'tables'));
+    }
+
+    // Hàm để lấy danh sách các bảng trong database
+    protected function getDatabaseTables()
+    {
+        $tables = DB::select('SHOW TABLES');
+        $tables = array_map('current', $tables);
+
+        // Loại bỏ các bảng mặc định và bảng của Laravel
+        $excludeTables = ['roles', 'permissions', 'role_permissions', 'users', 'migrations'];
+        $tables = array_diff($tables, $excludeTables);
+
+        return $tables;
     }
 
     public function update(Request $request)
@@ -22,6 +39,10 @@ class PermissionController extends Controller
         $crudData = $request->input('crud', []);
     
         foreach ($crudData as $attribute => $crudValues) {
+            if (!is_array($crudValues)) {
+                continue; // Skip if crudValues is not an array
+            }
+    
             // Initialize an array to store the crud values
             $crudArray = [
                 'create' => 0,
@@ -72,5 +93,5 @@ class PermissionController extends Controller
         }
     
         return redirect()->back()->with('success', 'Permissions updated successfully.');
-    }    
-}
+    }
+} 

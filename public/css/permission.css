@@ -1,5 +1,6 @@
 .table th, .table td {
     vertical-align: middle;
+    text-align: center;
 }
 
 .form-group label {
@@ -13,5 +14,29 @@
 margin-left: 50px;
 }
 .btn{
-margin-left: 110px
+margin-left: 250px;
 }
+
+/* Add CSS for better styling if needed */
+
+
+.table thead th {
+    background-color: #343a40;
+    color: #fff;
+}
+
+.table tfoot td {
+    background-color: #f8f9fa;
+}
+
+.delete-checkbox-cell {
+    vertical-align: middle !important;
+    text-align: center;
+}
+
+.checkall-container {
+    float: left;
+    margin-left: 50px;
+}
+
+

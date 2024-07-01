@@ -86,9 +86,9 @@
             <label for="role_name">Role</label>
             <select id="role_name" name="role_name" required>
                 @foreach ($roles as $role)
-                    @if ($role->id != 1)
+                    
                         <option value="{{ $role->id }}" {{ $employee->role_id == $role->id ? 'selected' : '' }}>{{ $role->name }}</option>
-                    @endif
+    
                 @endforeach
             </select>
         </div>

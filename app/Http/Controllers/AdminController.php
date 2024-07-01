@@ -123,31 +123,41 @@ class AdminController extends Controller
     }
 
     public function deleteUser($id)
-    {
-        $user = Auth::user();
-        $permissions = $this->permissionService->getUserPermissions($user->role_id);
+{
+    $user = Auth::user();
+    $permissions = $this->permissionService->getUserPermissions($user->role_id);
 
-        // Kiểm tra quyền xóa
-        if (!isset($permissions['delete']) || $permissions['delete'][3] != '1') {
-            return redirect()->back()->with('error', 'You do not have delete permission.');
-        }
-
-        // Tìm user để xóa
-        $userToDelete = User::find($id);
-
-        if (!$userToDelete) {
-            return redirect()->back()->with('error', 'User not found.');
-        }
-
-        // Xóa user
-        $deleted = $userToDelete->delete();
-
-        if ($deleted) {
-            return redirect()->back()->with('success', 'User has been deleted successfully.');
-        } else {
-            return redirect()->back()->with('error', 'Failed to delete user.');
+    // Kiểm tra quyền xóa
+    $canDelete = false;
+    foreach ($permissions as $permission) {
+        // Kiểm tra xem ký tự cuối cùng của giá trị nhị phân là '1' hay không
+        if (substr($permission, -1) === '1') {
+            $canDelete = true;
+            break;
         }
     }
+
+    if (!$canDelete) {
+        return redirect()->back()->with('error', 'You do not have delete permission.');
+    }
+
+    // Tìm user để xóa
+    $userToDelete = User::find($id);
+
+    if (!$userToDelete) {
+        return redirect()->back()->with('error', 'User not found.');
+    }
+
+    // Xóa user
+    $deleted = $userToDelete->delete();
+
+    if ($deleted) {
+        return redirect()->back()->with('success', 'User has been deleted successfully.');
+    } else {
+        return redirect()->back()->with('error', 'Failed to delete user.');
+    }
+}
+
 
     public function editEmployee($id)
     {

@@ -28,6 +28,7 @@
                 @endforeach
             </select>
         </div>
+        
 
         <!-- Hiển thị bảng ma trận attribute và quyền CRUD -->
         <form action="{{ route('permissions.update') }}" method="POST" id="permission-form" style="display: none; text-align: center">
@@ -48,16 +49,22 @@
                         @foreach($attributes as $attribute)
                             <tr>
                                 <td>{{ $attribute->attribute }}</td>
-                                <td class="text-center"><input type="checkbox" name="crud[{{ $attribute->attribute }}][]" value="create"></td>
-                                <td class="text-center"><input type="checkbox" name="crud[{{ $attribute->attribute }}][]" value="read"></td>
-                                <td class="text-center"><input type="checkbox" name="crud[{{ $attribute->attribute }}][]" value="update"></td>
-                                <td class="text-center"><input type="checkbox" name="crud[{{ $attribute->attribute }}][]" value="delete"></td>
+                                <td class="text-center"><input type="checkbox" class="crud-checkbox create-checkbox" name="crud[{{ $attribute->attribute }}][]" value="create"></td>
+                                <td class="text-center"><input type="checkbox" class="crud-checkbox read-checkbox" name="crud[{{ $attribute->attribute }}][]" value="read"></td>
+                                <td class="text-center"><input type="checkbox" class="crud-checkbox update-checkbox" name="crud[{{ $attribute->attribute }}][]" value="update"></td>
+                                @if ($loop->first)
+                                    <td class="text-center delete-checkbox-cell" rowspan="{{ count($attributes) }}"><input type="checkbox" class="delete-checkbox" name="crud[{{ $attribute->attribute }}][]" value="delete"></td>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
-            <button type="submit" class="btn btn-primary mt-3">Save</button>
+            <div class="form-group mt-1 checkall-container">
+                <input type="checkbox" id="check-all-crud" class="checkall_box" title="Check all">
+                <label for="check-all-crud">Check all</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
         </form>
     </div>
 @endsection
@@ -74,6 +81,12 @@
             document.getElementById('permission-form').style.display = 'none';
             document.getElementById('attributes-table').style.display = 'none';
         }
+    });
+
+    // Function to handle "Check All" feature
+    document.getElementById('check-all-crud').addEventListener('change', function() {
+        const checkboxes = document.querySelectorAll('.crud-checkbox, .delete-checkbox');
+        checkboxes.forEach(checkbox => checkbox.checked = this.checked);
     });
 </script>
 @endsection
