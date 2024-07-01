@@ -5,51 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Data</title>
-    <style>
-       
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        table th, table td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-        }
-        table th {
-            background-color: #f2f2f2;
-        }
-        p {
-            text-align: center;
-            color: #666;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="<?= base_url('css/rolePer.css') ?>">
 </head>
 <body>
-    <h1>User Data</h1>
+    <h1> PERMISSION</h1>
+    <?php
+$session = session();
+$role_id = $session->get('role_id');
+
+if (in_array($role_id, [1, 2])): ?>
+    <a href="<?= site_url('/createEmployee') ?>"><button class="create">Create Employee</button></a>
+<?php endif; ?>
     <?php if (!empty($userData) && is_array($userData)) : ?>
         <table>
             <thead>
                 <tr>
+                <th>STT</th>
                     <?php foreach (array_keys($userData[0]) as $column) : ?>
                         <th><?= esc($column) ?></th>
                     <?php endforeach; ?>
                 </tr>
             </thead>
             <tbody>
+            <?php $index = 1; ?>
                 <?php foreach ($userData as $user) : ?>
                     <tr>
+                    <td><?= $index ?></td>
                         <?php foreach ($user as $value) : ?>
                             <td><?= esc($value) ?></td>
                         <?php endforeach; ?>
                     </tr>
+                    <?php $index++; ?>
                 <?php endforeach; ?>
             </tbody>
         </table>

@@ -46,7 +46,7 @@
                 </div>
                 <div class="sidebar__link">
                     <i class="fa fa-handshake-o"></i>
-                    <a href="javascript:void(0);">Contracts</a>
+                    <a href="<?= site_url('/Permission') ?>">Permission</a>
                 </div>
                 <div class="sidebar__link">
                     <i class="fa fa-money"></i>

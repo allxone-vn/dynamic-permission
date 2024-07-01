@@ -51,3 +51,13 @@ $routes->post('/createE/delete', 'CreateE::delete');
 $routes->get('/LayoutEmploye', 'LayoutEmploye::index');
 $routes->get('LayoutEmploye/Permission', 'LayoutEmploye::Permission');
 $routes->get('LayoutEmploye/PermissionSelect', 'PermissionSelect::index');
+// admin Permission
+$routes->get('/Permission', 'Permission::index');
+// app/Config/Routes.php
+$routes->get('permissions/getTableColumnNames', 'Permission::getTableColumnNames');
+    
+$routes->post('permissions/updatePermissions', 'Permission::updatePermission');
+
+// create role
+$routes->get('/createRole', 'Dashboard::createRole');
+$routes->post('/addRole', 'createRoleC::submit_form');

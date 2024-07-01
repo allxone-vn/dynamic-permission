@@ -18,7 +18,7 @@ class Account extends BaseController
         $user = $userModel->findByEmail($username);
 
         $data = [
-            'title' => 'Create Employee',
+            'title' => 'Account',
             'content' => view('page/Account', ['user' => $user])
         ];
         if ($username === 'admin') {

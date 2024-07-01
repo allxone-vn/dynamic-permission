@@ -53,6 +53,16 @@ class Dashboard extends Controller
         $Account->show();
     }
 
+    public function Permission()
+    { 
+        $Permission = new Permission();
+        $Permission->index();
+    }
+    public function createRole()
+    { 
+        $createRole = new createRoleC();
+        $createRole->index();
+    }
 
     public function logout() {
         $session = session();

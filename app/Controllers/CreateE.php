@@ -18,13 +18,23 @@ class CreateE extends BaseController
         $roles = $roleModel->findAll();
         $departments = $departmentModel->findAll();
 
+        $userModel = new UserModel();
+        $session = session();
+
+        // Get the username from the session
+        $username = $session->get('username');
+
+        
         // Pass the roles and departments data to the view
         $data = [
             'title' => 'Create Employee',
             'content' => view('page/createEmployee',  ['roles' => $roles,'departments' => $departments])
         ];
-
-        echo view('layout', $data); // Render the view with roles and departments data
+        if ($username === 'admin') {
+            echo view('layout', $data);
+        } else {
+            echo view('LayoutEmploye', $data);
+        }
     }
 
     public function add()

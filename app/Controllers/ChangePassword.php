@@ -8,10 +8,7 @@ use App\Models\UserModel;
 
 class ChangePassword extends BaseController
 {
-    // public function index()
-    // {
-    //     return view('Home/changepass');
-    // }
+ 
     public function changePassword(){
         $session = session();
 

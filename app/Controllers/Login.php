@@ -34,7 +34,6 @@ class Login extends BaseController
                 if ($user['role_id'] == 1) {
                     return redirect()->to('/layout');
                 } else {
-                    
                     return redirect()->to('/LayoutEmploye');
                 }
             } else {

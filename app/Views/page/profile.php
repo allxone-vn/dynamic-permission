@@ -8,11 +8,9 @@
 </head>
 <body>
     <div class="profile-container">
-        <form action="<?= site_url('/profile/updateProfile') ?>" method="post">
+        <form action="<?= site_url('/profile/updateProfile') ?>" method="Post">
             <h1>Profile</h1>
             
-            <input type="hidden" name="id" value="<?= $profile['id'] ?>">
-
             <div class="profile-item">
                 <label for="full_name">Full name</label>
                 <input type="text" id="full_name" name="full_name" value="<?= $profile['full_name'] ?>">

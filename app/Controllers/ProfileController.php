@@ -19,13 +19,13 @@ class ProfileController extends BaseController
             // Handle the case when username is not found in session
             return redirect()->to('/login'); // Redirect to login or appropriate page
         }
-
+        
         // Instantiate the Users model
         $userModel = new UserModel();
-
+        
         // Find the user by username
         $user = $userModel->where('Username', $username)->first();
-
+        
         if (!$user) {
             // Handle the case when user is not found
             return redirect()->to('/login'); // Redirect to login or appropriate page
@@ -70,7 +70,6 @@ class ProfileController extends BaseController
     {
         // Get the request instance
         $request = \Config\Services::request();
-
         // Load the Profile model
         $profileModel = new Profiles();
         // Set validation rules
@@ -82,7 +81,6 @@ class ProfileController extends BaseController
             'address' => 'required',
             'marital_status' => 'required|alpha',
         ];
-
         if ($this->validate($validationRules)) {
             // Get input values
             $data = [

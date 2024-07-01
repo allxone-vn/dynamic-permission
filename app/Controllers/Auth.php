@@ -63,7 +63,7 @@ class Auth extends Controller
                         'username' => $data['username'],
                         'logged_in' => TRUE
                     ]);
-                    return redirect()->to('/layout');
+                    return redirect()->to('/LayoutEmploye');
                 } else {
                     // Người dùng không tồn tại, tạo mới
                     $newUserData = [

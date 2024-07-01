@@ -6,8 +6,8 @@ use CodeIgniter\Model;
 
 class RolePermissionModel extends Model
 {
-    protected $table            = 'rolepermissions';
-    protected $primaryKey       = 'role_id';
+    protected $table            = 'role_permission';
+    protected $primaryKey       = 'ID';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
@@ -43,4 +43,21 @@ class RolePermissionModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+    
+    public function updatePermission($roleId, $IDPer)
+    {
+        $data = [
+            'updated_at' => date('Y-m-d H:i:s'),
+            // Add other fields to update if needed
+        ];
+
+        // Build your update query
+        $this->where('role_id', $roleId)
+             ->where('IDPer', $IDPer)
+             ->update($data);
+
+        // Check if update was successful
+        return $this->affectedRows() > 0;
+    }
+  
 }

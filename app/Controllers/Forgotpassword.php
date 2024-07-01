@@ -41,7 +41,7 @@ class Forgotpassword extends Controller
         }
 
         // Redirect back to forgot password page
-        // return redirect()->to('/login');
+        return redirect()->to('/login');
     }
 
     private function generateRandomPassword($length = 10)

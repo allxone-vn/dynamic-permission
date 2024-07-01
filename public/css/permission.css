@@ -1,0 +1,104 @@
+/* Đặt tên tệp này là permission.css hoặc bất kỳ tên gì bạn thích */
+.permission {
+    margin: 20px;
+}
+
+.table-select {
+    margin-bottom: 10px; /* Khoảng cách dưới cùng để tách các dropdown */
+}
+
+.table-select label {
+    display: inline-block;
+    width: 120px;
+    margin-right: 10px;
+    font-size: 16px; /* Kích thước chữ */
+    color: #000; /* Màu chữ đen */
+    font-weight: bold; /* Chữ in đậm */
+}
+
+.table-select select {
+    width: 200px;
+    padding: 8px;
+    font-size: 16px; /* Kích thước chữ */
+    color: #000; /* Màu chữ đen */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+
+.permission table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.permission table th,
+.permission table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.permission table th {
+    background-color: #f2f2f2;
+}
+
+.permission table td input[type="text"] {
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.permission table td input[type="text"].edit-value {
+    width: 80px; /* Điều chỉnh độ rộng theo nhu cầu của bạn */
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.permission button.update-btn {
+    padding: 8px 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.permission  button.update-btn:hover {
+    background-color: #45a049;
+}
+
+.permission button#createRoleBtn {
+    padding: 10px 12px;
+    background-color: #337ab7; /* Màu nền */
+    color: white; /* Màu chữ */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 50px;
+    font-size: 16px;
+}
+
+.permission button#createRoleBtn:hover {
+    background-color: #286090; /* Màu nền khi di chuột qua */
+}
+.check-all-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.check-all-container h2 {
+    margin: 0;
+}
+.check-all-wrapper {
+    display: flex;
+    align-items: center;
+}
+.check-all-wrapper label {
+    margin-left: 5px;
+}

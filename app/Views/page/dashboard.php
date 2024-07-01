@@ -5,8 +5,6 @@
           <div class="main__title">
             <img src="assets/hello.svg" alt="" />
             <div class="main__greeting">
-              <h1>Hello Codersbite</h1>
-              <p>Welcome to your admin dashboard</p>
             </div>
           </div>
 
