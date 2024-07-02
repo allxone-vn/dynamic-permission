@@ -7,17 +7,27 @@ use App\Models\Role;
 use App\Models\Permission;
 use App\Models\RolePermission;
 use Illuminate\Support\Facades\DB;
+use Schema;
 
 class PermissionController extends Controller
 {
-    public function index()
+        public function index(Request $request)
     {
         $roles = Role::all();
-        $attributes = Permission::select('attribute')->distinct()->get();
-
-        // Lấy danh sách các bảng trong database
         $tables = $this->getDatabaseTables();
-        return view('permission', compact('roles', 'attributes', 'tables'));
+        $attributes = [];
+        
+        $selectedTable = $request->get('table_name');
+        
+        if ($selectedTable) {
+            // Lấy các thuộc tính của bảng đã chọn từ bảng permissions
+            $attributes = Permission::where('table_name', $selectedTable)
+                ->select('attribute')
+                ->distinct()
+                ->get();
+        }
+        
+        return view('permission', compact('roles', 'attributes', 'tables', 'selectedTable'));
     }
 
     // Hàm để lấy danh sách các bảng trong database
@@ -27,11 +37,22 @@ class PermissionController extends Controller
         $tables = array_map('current', $tables);
 
         // Loại bỏ các bảng mặc định và bảng của Laravel
-        $excludeTables = ['roles', 'permissions', 'role_permissions', 'users', 'migrations'];
+        $excludeTables = ['roles', 'permissions', 'role_permissions', 'users', 'migrations', 'sessions'];
         $tables = array_diff($tables, $excludeTables);
 
         return $tables;
     }
+
+    public function getAttributes(Request $request)
+{
+    $tableName = $request->get('table_name');
+    $attributes = Permission::where('table_name', $tableName)
+        ->select('attribute')
+        ->distinct()
+        ->get();
+
+    return response()->json($attributes);
+}
 
     public function update(Request $request)
     {
@@ -94,4 +115,52 @@ class PermissionController extends Controller
     
         return redirect()->back()->with('success', 'Permissions updated successfully.');
     }
+
+
+    public function updateTablePermissions()
+    {
+        // Định nghĩa các giá trị CRUD
+        $crudValues = [
+            '0000', '0001', '0010', '0011',
+            '0100', '0101', '0110', '0111',
+            '1000', '1001', '1010', '1011',
+            '1100', '1101', '1110', '1111',
+        ];
+
+        // Lấy danh sách tất cả các bảng trong cơ sở dữ liệu
+        $tables = Schema::getConnection()->getDoctrineSchemaManager()->listTableNames();
+
+        // Loại bỏ các bảng mặc định của Laravel
+        $excludeTables = ['migrations', 'users', 'password_resets', 'roles', 'permissions', 'role_permission', 'sessions', 'role_permission']; // Thêm các bảng khác mà bạn muốn loại trừ vào đây
+
+        foreach ($tables as $table) {
+            if (!in_array($table, $excludeTables)) {
+                // Kiểm tra xem table_name đã tồn tại trong bảng permissions chưa
+                $exists = DB::table('permissions')->where('table_name', $table)->exists();
+
+                if (!$exists) {
+                    // Lấy danh sách các cột của bảng
+                    $columns = Schema::getColumnListing($table);
+
+                    // Loại bỏ các cột id, created_at, updated_at
+                    $filteredColumns = array_diff($columns, ['id', 'created_at', 'updated_at']);
+
+                    // Chèn dữ liệu vào bảng permissions
+                    foreach ($filteredColumns as $column) {
+                        foreach ($crudValues as $crudValue) {
+                            DB::table('permissions')->insert([
+                                'attribute' => $column,
+                                'crud_value' => $crudValue,
+                                'table_name' => $table,
+                                'created_at' => now(),
+                                'updated_at' => now(),
+                            ]);
+                        }
+                    }
+                }
+            }
+        }
+        return redirect()->back()->with('success', 'Permissions updated successfully.');
+    }
+    
 } 

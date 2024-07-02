@@ -83,3 +83,9 @@ Route::put('admin/employee/{id}', [AdminController::class, 'updateEmployee'])->n
 
 Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions.index');
 Route::post('/permissions/update', [PermissionController::class, 'update'])->name('permissions.update');
+
+Route::post('/update-table-permissions', [PermissionController::class, 'updateTablePermissions'])->name('update-table-permissions');
+
+Route::get('get-attributes', [PermissionController::class, 'getAttributes']);
+
+Route::get('/salaries', [AdminController::class, 'showSalaries'])->name('salaries.index');

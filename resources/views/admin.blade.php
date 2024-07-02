@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <title>ADMIN DASHBOARD</title>
   </head>
   <body id="body">
@@ -65,6 +66,10 @@
           <div class="sidebar__link">
             <i class="fas fa-users-cog"></i>
             <a href="{{ route('permissions.index') }}">Permission</a>
+          </div>
+          <div class="sidebar__link">
+            <i class="fas fa-money-bill"></i>
+            <a href="{{ route('salaries.index') }}">Salary</a>
           </div>
           <div class="sidebar__link">
             <i class="fas fa-key"></i>

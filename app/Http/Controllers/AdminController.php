@@ -38,6 +38,17 @@ class AdminController extends Controller
          return view('profile', compact('user', 'profile'));
     }
 
+    public function showSalaries()
+    {
+        $user = Auth::user();
+        $permissions = $this->permissionService->getUserPermissions($user->role_id);
+
+        // Lấy danh sách các bản ghi từ bảng salaries
+        $salaries = DB::table('salaries')->get();
+
+        return view('salary', compact('salaries','permissions'));
+    }
+
     public function employeeList()
     {
         $user = Auth::user();
